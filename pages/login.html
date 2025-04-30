@@ -1,0 +1,62 @@
+<!-- pages/login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="../css/styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión | Elite Pets</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <h1>Elite Pets</h1>
+      <nav>
+        <a href="login.html">Login</a>
+<a href="registro.html">Registro</a>
+<a href="contacto.html">Contacto</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Iniciar sesión</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Elite Pets. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Simulación de login usando localStorage
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      const usuario = usuarios.find(u => u.email === email && u.password === password);
+
+      if (usuario) {
+        alert('Inicio de sesión exitoso');
+        sessionStorage.setItem('usuarioActivo', JSON.stringify(usuario));
+        window.location.href = 'dashboard.html'; // Redirige al panel
+      } else {
+        alert('Credenciales incorrectas');
+      }
+    });
+  </script>
+</body>
+</html>
